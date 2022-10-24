@@ -1,0 +1,21 @@
+﻿@{
+   // ViewData["Title"] = "Simple Calculator";
+}
+
+<h2>Simple Calculator</h2>
+<p></p>
+<form action="Calculate">
+    <input type="number" name="FirstNumber" required />
+
+    <select required name="Operator">
+        <option value='+'>+</option>
+        <option value='-'>-</option>
+        <option value='*'>*</option>
+        <option value='/'>/</option>
+    </select>
+
+    <input type="number" name="SecondNumber" required /> <br />
+
+    <button type="submit">Calculate</button>  <b><text>The result of your calculation: @ViewBag.CalcResoult</text></b>
+
+</form>
