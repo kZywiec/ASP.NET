@@ -1,5 +1,14 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+ ViewData["Title"] = "Date Of Birth" ;
 }
+
+<h2>Hi, @ViewBag.Message.</h2>
+<h5>@ViewBag.UserDateOfBirth</h5>
+<form action = "DateOfBirth">
+
+    Your dignity: <input type="text" name="Name" required />
+    <br />
+    Your age: <input type="number" name="Age" required />
+    <button type="submit">Enter</button>
+
+</form>
