@@ -1,0 +1,33 @@
+﻿@model List<App1.Models.Character>
+
+@{
+    //Layout = null;
+    ViewData["Title"] = "Characters";
+}
+
+
+    <h1>Lista Postaci</h1>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th>Race</th>
+        </tr>
+        @foreach (var character in Model)
+        {
+            <tr>
+                <td>@character.Name</td>
+                <td>@character.Sex</td>
+                <td>@character.Age</td>
+                <td>@character.Race</td>
+                <td>
+                    <a class="btn" asp-controller="Character" asp-action="EditForm" asp-route-id=@character.Id>Edit</a>
+                </td>
+                <td>
+                    <a class="btn" asp-controller="Character" asp-action="Delete" asp-route-id=@character.Id>Delete</a>
+                </td>
+
+            </tr>
+        }
+    </table>

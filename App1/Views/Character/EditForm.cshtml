@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Characters";
+}
+
+@model Character
+
+<h1>Edycja Postaci</h1>
+<form asp-action="EditForm" method="post">
+    <div asp-validation-summary="All"></div>
+    <div style="align-items:center">
+        <input size="3" type="text" asp-for="Name" />
+        <input size="1" type="text" asp-for="Sex" />
+        <input style="width: 3em" type="number" asp-for="Age" />
+        <br />
+        <input size="17" type="text" asp-for="Race" />
+        <br />
+        <input size="17" type="text" asp-for="Social_Standing" />
+        <br />
+        <input size="17" type="text" asp-for="Homeland" />
+    </div>
+    <table>
+        <tr>
+            <td>Intelligence:</td>
+            <td><input type="number" asp-for="Intelligence" /></td>
+        </tr>
+        <tr>
+            <td>Reflexes:</td>
+            <td><input type="number" asp-for="Reflexes" /></td>
+        </tr>
+        <tr>
+            <td>Dexterity:</td>
+            <td><input type="number" asp-for="Dexterity" /></td>
+        </tr>
+        <tr>
+            <td>Body:</td>
+            <td><input type="number" asp-for="Body" /></td>
+        </tr>
+        <tr>
+            <td>Speed:</td>
+            <td><input type="number" asp-for="Speed" /></td>
+        </tr>
+        <tr>
+            <td>Emphaty:</td>
+            <td><input type="number" asp-for="Emphaty" /></td>
+        </tr>
+        <tr>
+            <td>Craft:</td>
+            <td><input type="number" asp-for="Craft" /></td>
+        </tr>
+        <tr>
+            <td>Luck":</td>
+            <td><input type="number" asp-for="Luck" /></td>
+        </tr>
+    </table>
+    <input type="submit" value="Save" />
+</form>
+
