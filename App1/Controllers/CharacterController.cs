@@ -10,52 +10,21 @@ namespace App1.Controllers
 {
     public class CharacterController : Controller
     {
-        public static List<Character> characters = new List<Character> {
-            new Character()
-            {
-                ID = 1, 
-                Name = "Geralt",
-                Sex = "Male",
-                Age=112, 
-                Race = "Witcher" 
-            },
+        private static AppDbContext context = new AppDbContext();
 
-            new Character()
-            {
-                ID = 2, 
-                Name = "Yennefer",
-                Sex = "Female",
-                Age=85,
-                Race = "Human"
-            },
-
-            new Character()
-            {
-                ID = 3, 
-                Name = "Zoltan Chivay",
-                Sex = "Male",
-                Age=62,
-                Race = "Dwarf"
-            }
-        };
-
-        static int Counter = 3;
+        public static List<Character> characters = new List<Character>();
+            
         public IActionResult List()
         {
+            List<Character> characters = context.Characters.ToList();
             return View(characters);
-        }
-
-        public IActionResult Index()
-        {
-            return View();
         }
 
         public IActionResult AddCharacter(Character character)
         {
-            Counter++;
-            character.ID = Counter;
-            characters.Add(character);
-            return View("List", characters);
+            context.Characters.Add(character);
+            context.SaveChanges();
+            return View("List", context.Characters.ToList());
         }
 
         [HttpPost]
@@ -63,8 +32,11 @@ namespace App1.Controllers
         {
             if (ModelState.IsValid)
             {
-                characters[character.ID-1] = character;
-                return View("List", characters);
+                context.Characters.Remove(context.Characters.Find(character.ID));
+                context.Characters.Update(character);
+                context.SaveChanges();
+
+                return View("List", context.Characters.ToList());
             }
             else
                 return View();
@@ -73,16 +45,16 @@ namespace App1.Controllers
         [HttpGet]
         public IActionResult EditForm(int id)
         {
-            Character character = characters.Single(character => character.ID == id);
-            return View(character);
+            return View(context.Characters.Find(id));
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Character character = characters.Single(character => character.ID == id);
-            characters.Remove(character);
-            return View("List", characters);
+            Character character = context.Characters.Find(id);
+            context.Characters.Remove(character);
+            context.SaveChanges();
+            return View("List", context.Characters.ToList());
         }
     }
 }
