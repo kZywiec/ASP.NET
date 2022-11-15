@@ -5,7 +5,8 @@ namespace App1.Models
 {
     public class Character
     {
-        
+        public DateTime CreatedDate { get; set; }
+
         private int id;
 
         //Basic informations
@@ -52,6 +53,7 @@ namespace App1.Models
         public int Id => id;
 
         public Character() { }
+        public Character(int id) { this.id = id; }
 
         public int Run()
             => Speed * 3;
